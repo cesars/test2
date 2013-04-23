@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Infobae" default="update" >
+
+	<property name="svn.url" value="http://projects.globant.com/svn/INFBAECMSR/release" />
+	
+	<target name="prepare">		
+		<svnlastrevision 
+			username="infobae"
+			password="1nf0b43" 
+			repositoryurl="http://projects.globant.com/svn/INFBAECMSR/release" 
+			propertyname="svn.lastrevision" />
+
+		<php function="preg_replace" returnProperty="svn.branch">
+			<param value="/.*svn\/INFBAECMSR/" />
+			<param value="" />
+			<param value="${svn.url}" />
+		</php>
+
+
+	</target>
+
+	<target name="update" depends="prepare">
+		<echo>Lastrevision: ${svn.lastrevision}</echo>
+		<echo>svn.branch: ${svn.branch}</echo>
+	</target>
+</project>
